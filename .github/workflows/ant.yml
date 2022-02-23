@@ -22,4 +22,4 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Build with Ant
-      run: ant -noinput -buildfile src\test\java\edu\ncsu\csc326\coffeemaker\build.xml
+      run: ant -noinput -buildfile build.xml
