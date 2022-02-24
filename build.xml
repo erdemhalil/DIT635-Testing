@@ -8,7 +8,8 @@
 		</fileset>
 		<pathelement path="${build.dir}" />
 	</path>
-    <target name = "all" depends = "clean"></target>
+    <target name = "all" depends = "clean">
+    <mkdir dir="${build.dir}"/></target>
 	<target name="clean">
 		<delete>
 			<fileset dir="${build.dir}">
