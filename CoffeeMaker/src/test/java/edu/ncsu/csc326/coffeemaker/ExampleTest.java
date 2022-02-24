@@ -76,14 +76,7 @@ public class ExampleTest {
 		assertEquals(expected,inventory);
 	}
 	
-	@Test
-	public void testAddInventoryException() {
-		Throwable exception = assertThrows(
-				InventoryException.class, () -> {
-					cm.addInventory("4", "-1", "asdf", "3"); // Should throw an InventoryException
-				}
-				);
-	}
+
 	
 	@Test
 	public void testMakeCoffee_Normal() {
