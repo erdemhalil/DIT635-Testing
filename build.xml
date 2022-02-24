@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Testing" basedir="." default="all">
-	<property name="src.dir" value="src" />
+	<property name="src.dir" value="CoffeeMaker/src" />
 	<property name="build.dir" value="target" />
 	<path id="classpath">
 		<fileset dir="${src.dir}/main">
