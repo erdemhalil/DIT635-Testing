@@ -2,20 +2,21 @@
 <project name="Testing" basedir="." default="all">
 	<property name="src.dir" value="CoffeeMaker/src" />
 	<property name="build.dir" value="target" />
-	<junit printsummary="yes" haltonfailure="yes">
-		<classpath>
-			<path refid="your.classpath.refid" />
-			<fileset dir=".">
-				<include name="**/junit.jar" />
-			</fileset>
-		</classpath>
-	</junit>
+
 	<path id="classpath">
 		<fileset dir="${src.dir}/main">
 			<include name="*.java" />
 		</fileset>
 		<pathelement path="${build.dir}" />
 	</path>
+    	<junit printsummary="yes" haltonfailure="yes">
+		<classpath>
+			<path refid="${classpath}" />
+			<fileset dir=".">
+				<include name="**/junit.jar" />
+			</fileset>
+		</classpath>
+	</junit>
 	<target name="all" depends="build, clean">
 	</target>
 	<target name="build">
