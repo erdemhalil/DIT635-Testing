@@ -2,28 +2,30 @@
 <project name="Testing" basedir="." default="all">
 	<property name="src.dir" value="CoffeeMaker/src" />
 	<property name="build.dir" value="target" />
+	<path id="junit.platform.libs.classpath">
+		<fileset dir="${basedir}/src/lib/junit-platform/" />
+	</path>
+	<path id="junit.engine.jupiter.classpath">
+		<fileset dir="${basedir}/src/lib/jupiter/" />
+	</path>
 	<path id="classpath">
 		<fileset dir="${src.dir}/main">
 			<include name="*.java" />
 		</fileset>
 		<pathelement path="${build.dir}" />
 	</path>
-	<junit printsummary="yes" haltonfailure="yes">
-		<classpath>
-			<path refid="classpath" />
-			<fileset dir=".">
-				<include name="**/junit.jar" />
-			</fileset>
-		</classpath>
-	</junit>
 	<target name="all" depends="build, clean">
 	</target>
 	<target name="build">
-		<mkdir dir="${build.dir}" />
-		<javac destdir="${build.dir}" source="1.7" target="1.7">
-			<src path="${src.dir}" />
-			<classpath refid="classpath" />
-		</javac>
+		<junitlauncher>
+			<classpath refid="junit.platform.libs.classpath" />
+			<classpath refid="junit.engine.jupiter.classpath" />
+			<mkdir dir="${build.dir}" />
+			<javac destdir="${build.dir}" source="1.7" target="1.7">
+				<src path="${src.dir}" />
+				<classpath refid="classpath" />
+			</javac>
+		</junitlauncher>
 	</target>
 	<target name="clean">
 		<delete>
