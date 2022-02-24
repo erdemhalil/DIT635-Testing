@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Testing" basedir="." default="all">
 	<property name="src.dir" value="src" />
-	<property name="build.dir" value="CoffeeMaker/bin/main/java" />
+	<property name="build.dir" value="target" />
 	<path id="classpath">
 		<fileset dir="${src.dir}/main">
 			<include name="*.java" />
 		</fileset>
 		<pathelement path="${build.dir}" />
 	</path>
-    <target name = "all" depends = "clean">
-    <mkdir dir="${build.dir}"/></target>
+	<target name="all" depends="build, clean">
+	</target>
+	<target name="build">
+		<mkdir dir="${build.dir}" />
+		<javac destdir="${build.dir}" source="1.8" target="1.8">
+			<src path="${src.dir}" />
+			<classpath refid="classpath" />
+		</javac>
+	</target>
 	<target name="clean">
 		<delete>
 			<fileset dir="${build.dir}">
