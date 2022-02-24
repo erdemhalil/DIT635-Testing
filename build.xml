@@ -12,7 +12,7 @@
 	</target>
 	<target name="build">
 		<mkdir dir="${build.dir}" />
-		<javac destdir="${build.dir}" source="1.8" target="1.8">
+		<javac destdir="${build.dir}" source="1.7" target="1.7">
 			<src path="${src.dir}" />
 			<classpath refid="classpath" />
 		</javac>
