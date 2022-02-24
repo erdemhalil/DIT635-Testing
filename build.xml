@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Testing" basedir= "." default="all">
-<property name= "src.dir" value="src"/>
-<property name= "build.dir" value="target"/>
-<path id="classpath">
-<fileset dir = "${src.dir}/main"> <include name = "*.java"/> </fileset>
-<pathelement path = "${build.dir}"/>
-</path>
-
-<target name= "Clean">
-<delete>
-<fileset dir = "${build.dir}">
-<include name = "**/*.class"/>
-</fileset>
-</delete>
-</target>
-<target name= "Compile"></target>
-
+<project name="Testing" basedir="." default="Clean">
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="target" />
+	<path id="classpath">
+		<fileset dir="${src.dir}/main">
+			<include name="*.java" />
+		</fileset>
+		<pathelement path="${build.dir}" />
+	</path>
+	<target name="Clean">
+		<delete>
+			<fileset dir="${build.dir}">
+				<include name="**/*.class" />
+			</fileset>
+		</delete>
+	</target>
+	<target name="Compile">
+	</target>
 </project>
