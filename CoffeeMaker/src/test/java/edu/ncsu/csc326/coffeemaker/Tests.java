@@ -7,6 +7,7 @@ import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.function.Try;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,7 +66,7 @@ public class MainTest {
 	}
 
 	//1
-	@org.junit.jupiter.api.Test
+	@Test
 	public void testCheckInventory() {
 		String inventory = cm.checkInventory();
 		String expected = "Coffee: 15\nMilk: 15\nSugar: 15\nChocolate: 15\n";
@@ -74,7 +75,7 @@ public class MainTest {
 	}
 
 	//2
-	@org.junit.jupiter.api.Test
+	@Test
 	public void testMakeCoffee() {
 		assertEquals(20, cm.makeCoffee(2, 120)); // Make a coffee and check the change
 		String inventory = cm.checkInventory();
@@ -83,7 +84,7 @@ public class MainTest {
 	}
 
 	//3
-	@org.junit.jupiter.api.Test
+	@Test
 	public void testAddInventory_Normal() {
 		try {
 			cm.addInventory("4", "7", "0", "9"); // Coffee, Milk, Sugar, Chocolate
@@ -97,7 +98,7 @@ public class MainTest {
 	}
 
 	//4
-	@org.junit.jupiter.api.Test
+	@Test
 	public void testAddInventoryException() {
 		Throwable exception = assertThrows(
 				InventoryException.class, () -> {
@@ -106,7 +107,7 @@ public class MainTest {
 	}
 
 	//5
-	@org.junit.jupiter.api.Test
+	@Test
 	public void testAddRecepi() {
 		Recipe r5 = new Recipe();
 		try {
@@ -126,7 +127,7 @@ public class MainTest {
 	}
 
 	//6
-	@org.junit.jupiter.api.Test
+	@Test
 	public void testAddRecepiException() {
 		Recipe r5 = new Recipe();
 		Throwable exception = assertThrows(
@@ -142,7 +143,7 @@ public class MainTest {
 	}
 
 	//7
-	@org.junit.jupiter.api.Test
+	@Test
 	public void testEditRecepi() {
 		Recipe[] recipes = cm.getRecipes();
 		Recipe newRecipe = new Recipe();
@@ -162,7 +163,7 @@ public class MainTest {
 	}
 
 	//8
-	@org.junit.jupiter.api.Test
+	@Test
 	public void testEditRecepiException() {
 		Recipe[] recipes = cm.getRecipes();
 		Recipe newRecipe = new Recipe();
@@ -179,7 +180,7 @@ public class MainTest {
 	}
 
 	//9
-	@org.junit.jupiter.api.Test
+	@Test
 	public void testDeleteARecepi() {
 		try {
 			Recipe[] recipes = cm.getRecipes();
