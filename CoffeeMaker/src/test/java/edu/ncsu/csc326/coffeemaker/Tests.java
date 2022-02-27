@@ -64,6 +64,7 @@ public class MainTest {
 		cm.addRecipe(r4);
 	}
 
+	//1
 	@org.junit.jupiter.api.Test
 	public void testCheckInventory() {
 		String inventory = cm.checkInventory();
@@ -72,6 +73,7 @@ public class MainTest {
 		assertEquals(expected, inventory);
 	}
 
+	//2
 	@org.junit.jupiter.api.Test
 	public void testMakeCoffee() {
 		assertEquals(20, cm.makeCoffee(2, 120)); // Make a coffee and check the change
@@ -80,6 +82,7 @@ public class MainTest {
 		assertEquals(expected, inventory); // Check if the remaining ingrediants are correct
 	}
 
+	//3
 	@org.junit.jupiter.api.Test
 	public void testAddInventory_Normal() {
 		try {
@@ -93,6 +96,7 @@ public class MainTest {
 		assertEquals(expected, inventory);
 	}
 
+	//4
 	@org.junit.jupiter.api.Test
 	public void testAddInventoryException() {
 		Throwable exception = assertThrows(
@@ -101,6 +105,7 @@ public class MainTest {
 				});
 	}
 
+	//5
 	@org.junit.jupiter.api.Test
 	public void testAddRecepi() {
 		Recipe r5 = new Recipe();
@@ -120,6 +125,7 @@ public class MainTest {
 		assertEquals(r5, recipes[4]); // We check if the recipe is correct
 	}
 
+	//6
 	@org.junit.jupiter.api.Test
 	public void testAddRecepiException() {
 		Recipe r5 = new Recipe();
@@ -135,6 +141,7 @@ public class MainTest {
 				}); // Should throw an Exception
 	}
 
+	//7
 	@org.junit.jupiter.api.Test
 	public void testEditRecepi() {
 		Recipe[] recipes = cm.getRecipes();
@@ -154,6 +161,7 @@ public class MainTest {
 		assertEquals(recipeEdited, newRecipe); // Check if they are the same
 	}
 
+	//8
 	@org.junit.jupiter.api.Test
 	public void testEditRecepiException() {
 		Recipe[] recipes = cm.getRecipes();
@@ -170,6 +178,7 @@ public class MainTest {
 				}); // Should throw an Exception
 	}
 
+	//9
 	@org.junit.jupiter.api.Test
 	public void testDeleteARecepi() {
 		try {
