@@ -9,7 +9,7 @@
 		<fileset dir="${basedir}/src/lib/jupiter/" />
 	</path>
 	<path id="classpath">
-		<fileset dir="${src.dir}/main">
+		<fileset dir="${src.dir}/main/java">
 			<include name="*.java" />
 		</fileset>
 		<pathelement path="${build.dir}" />
@@ -17,15 +17,14 @@
 	<target name="all" depends="build, clean">
 	</target>
 	<target name="build">
-		<junitlauncher>
-			<classpath refid="junit.platform.libs.classpath" />
-			<classpath refid="junit.engine.jupiter.classpath" />
-			<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+
+
 			<javac destdir="${build.dir}" source="1.7" target="1.7">
 				<src path="${src.dir}" />
 				<classpath refid="classpath" />
 			</javac>
-		</junitlauncher>
+
 	</target>
 	<target name="clean">
 		<delete>
