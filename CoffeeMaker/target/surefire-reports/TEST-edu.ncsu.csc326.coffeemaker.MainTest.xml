@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="edu.ncsu.csc326.coffeemaker.MainTest" time="0.012" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="edu.ncsu.csc326.coffeemaker.MainTest" time="0.008" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="14.0.2+12-46"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-14.0.2\bin"/>
     <property name="user.country.format" value="BG"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\erdem\Desktop\DIT635\DIT635-Testing\CoffeeMaker"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\erdem\Desktop\1\DIT635-Testing\CoffeeMaker"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\erdem\Desktop\DIT635\DIT635-Testing\CoffeeMaker"/>
+    <property name="user.dir" value="C:\Users\erdem\Desktop\1\DIT635-Testing\CoffeeMaker"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="14.0.2+12-46"/>
     <property name="os.arch" value="amd64"/>
@@ -62,14 +62,14 @@
     <property name="sun.stdout.encoding" value="cp437"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testCheckInventory" time="0.009"/>
+  <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testCheckInventory" time="0.006"/>
   <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testMakeCoffee" time="0"/>
   <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testAddInventoryException" time="0"/>
   <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testAddInventory_Normal" time="0"/>
   <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testDeleteARecipe" time="0"/>
-  <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testMakeCoffee_Normal" time="0.001"/>
-  <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testAddRecipe" time="0"/>
+  <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testMakeCoffee_Normal" time="0"/>
+  <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testAddRecipe" time="0.001"/>
   <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testEditRecipe" time="0"/>
-  <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testAddRecipeException" time="0.002"/>
+  <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testAddRecipeException" time="0.001"/>
   <testcase classname="edu.ncsu.csc326.coffeemaker.MainTest" name="testEditRecipeException" time="0"/>
 </testsuite>

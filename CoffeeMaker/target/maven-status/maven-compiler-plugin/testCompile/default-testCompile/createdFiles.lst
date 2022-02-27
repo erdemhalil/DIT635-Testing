@@ -1,2 +1,5 @@
 edu\ncsu\csc326\coffeemaker\MainTest.class
+edu\ncsu\csc326\coffeemaker\addRecipeStructural.class
 edu\ncsu\csc326\coffeemaker\makeCoffeeStructural.class
+edu\ncsu\csc326\coffeemaker\addSugarStructural.class
+edu\ncsu\csc326\coffeemaker\setPriceStructural.class
