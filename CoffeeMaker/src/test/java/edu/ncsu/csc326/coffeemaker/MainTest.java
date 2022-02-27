@@ -87,12 +87,6 @@ public class MainTest {
 				}
 				);
 	}
-	
-	@Test
-	public void testMakeCoffee_Normal() {
-		cm.addRecipe(r1);
-		assertEquals(25, cm.makeCoffee(0, 75));
-	}
 
 	//1
 	@Test
