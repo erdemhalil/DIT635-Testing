@@ -7,6 +7,7 @@ import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.function.Try;
 
@@ -20,7 +21,7 @@ public class MainTest {
 	private Recipe r3;
 	private Recipe r4;
 
-	@Before
+	@BeforeAll
 	public void setUp() throws Exception {
 		cm = new CoffeeMaker();
 
