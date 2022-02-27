@@ -138,10 +138,7 @@ public class Main {
 	    if(recipeToEdit < 0) {
 	    	mainMenu();
 	    }
-
-	    //Read recipe name
-		String nameString = inputOutput("\nPlease enter the recipe name: ");
-
+	    
 	    //Read in recipe price
 	    String priceString = inputOutput("\nPlease enter the recipe price: $");
 	    
@@ -159,7 +156,6 @@ public class Main {
 	    
 	    Recipe newRecipe = new Recipe();
 	    try {
-			newRecipe.setName(nameString);
 			newRecipe.setPrice(priceString);
 			newRecipe.setAmtCoffee(coffeeString);
 			newRecipe.setAmtMilk(milkString);

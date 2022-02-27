@@ -117,13 +117,13 @@ public class Recipe {
 	 * @return   Returns the name.
 	 */
     public String getName() {
-		return this.name;
+		return name;
 	}
     /**
 	 * @param name   The name to set.
 	 */
     public void setName(String name) {
-    	if(name != null && !name.equals("")) {
+    	if(name != null) {
     		this.name = name;
     	}
 	}
