@@ -228,7 +228,8 @@ public class Main {
         int recipeToPurchase = recipeListSelection("Please select the number of the recipe to purchase.");
         
         String amountPaid = inputOutput("Please enter the amount you wish to pay");
-        int amtPaid = 0;
+        int amtPaid = 0; // Mutation 4 
+		// Change 0 to 1
         try {
         	amtPaid = Integer.parseInt(amountPaid);
         } catch (NumberFormatException e) {
@@ -280,6 +281,8 @@ public class Main {
         	recipe = Integer.parseInt(userSelection) - 1;
         	if (recipe >= 0 && recipe <=2) {
         		//do nothing here.
+				// Mutation 5
+				// Add recipe = recipe;
         	} else {
         		recipe = -1;
         	}

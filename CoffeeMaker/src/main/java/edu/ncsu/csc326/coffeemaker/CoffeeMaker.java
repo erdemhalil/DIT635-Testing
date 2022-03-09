@@ -88,7 +88,7 @@ public class CoffeeMaker {
         
         if (getRecipes()[recipeToPurchase] == null) {
         	change = amtPaid;
-        } else if (getRecipes()[recipeToPurchase].getPrice() <= amtPaid) {
+        } else if (getRecipes()[recipeToPurchase].getPrice() <= amtPaid) { // Mutation 6 Add "&& amtPaid > 0"
         	if (inventory.useIngredients(getRecipes()[recipeToPurchase])) {
         		change = amtPaid - getRecipes()[recipeToPurchase].getPrice();
         	} else {

@@ -59,7 +59,8 @@ public class Inventory {
     	} catch (NumberFormatException e) {
     		throw new InventoryException("Units of chocolate must be a positive integer");
     	}
-		if (amtChocolate >= 0) {
+		if (amtChocolate >= 0) { // Mutation 3 
+            // Change ">=" to "<="
 			Inventory.chocolate += amtChocolate;
 		} else {
 			throw new InventoryException("Units of chocolate must be a positive integer");
@@ -152,7 +153,8 @@ public class Inventory {
      * @return int
      */
     public int getSugar() {
-        return sugar;
+        return sugar;  // Mutation 1
+        // Change sugar to something that doens't exist stopping the program from compiling
     }
     
     /**
@@ -161,7 +163,8 @@ public class Inventory {
      * @param sugar
      */
     public synchronized void setSugar(int sugar) {
-    	if(sugar >= 0) {
+    	if(sugar >= 0) { // Mutation 2 
+            // Change ">= 0" to "> -1" giving the same answer 
     		Inventory.sugar = sugar;
     	}
     }
