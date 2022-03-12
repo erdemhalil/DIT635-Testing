@@ -1,0 +1,186 @@
+MODULE main
+VAR
+  
+    -- NS -> North and South
+    -- EW -> East and West
+
+    -- traffic light variables
+    traffic_light_NS: {RED, YELLOW, GREEN};
+    traffic_light_EW: {RED, YELLOW, GREEN};
+
+    -- pedestrian light variables
+    ped_light_NS: {STOP, WALK};
+    ped_light_EW: {STOP, WALK};
+
+    -- traffic flow variable
+    -- traffic either runs from North to South (since it's a crossroad opposite is true as well) or from East to West
+    current_traffic_flow: {NS, EW};
+
+    -- time left green for currently green light (seconds)
+    -- time left yellow for currently yellow light
+    -- time left yellow for currently red light
+    time_left_green: 0..45;
+    time_left_yellow: 0..3;   
+    time_left_red: 0..45;
+    
+
+    -- car_sensor_NS and car_sensor_EW are the sensors that detect cars at the different directions of the traffic
+    -- car_waiting_time_reduction is the method to shorten the time of the green lights at the other direction for cars
+    car_sensor_NS: boolean;
+    car_sensor_EW: boolean;
+    car_waiting_time_reduction: boolean;
+
+    -- emergency_sensor is the sensor to detect an upcoming emergency vehicle
+    emergency_sensor: boolean;
+    
+
+
+ASSIGN
+
+    -- Initial state
+    init(traffic_light_NS) := GREEN;
+    init(traffic_light_EW) := RED;
+    init(ped_light_NS) := STOP;
+    init(ped_light_EW) := WALK;
+    init(current_traffic_flow) := NS;
+    init(time_left_green) := 45;
+    init(time_left_yellow) := 0;
+    init(time_left_red) := 0;
+    init(car_sensor_NS) := FALSE;
+    init(car_sensor_EW) := FALSE;
+    init(car_waiting_time_reduction) := FALSE;
+    init(emergency_sensor) := FALSE;
+   
+
+    --Control NS traffic lights considering traffic flow, timers and emergency sensor
+    next(traffic_light_NS) := 
+    case
+        (traffic_light_NS = GREEN) & (emergency_sensor) = TRUE : YELLOW;
+        (traffic_light_NS = RED) & (current_traffic_flow = EW) & (time_left_red = 0) & (emergency_sensor) = FALSE : GREEN;
+        (traffic_light_NS = YELLOW) & (current_traffic_flow = NS) & (time_left_yellow = 0) & (emergency_sensor) = FALSE : RED;
+        (traffic_light_NS = GREEN) & (time_left_green = 0) & (emergency_sensor) = FALSE : YELLOW;
+        TRUE : RED;
+    esac;
+
+    -- Control EW traffic lights considering traffic flow, timers and emergency sensor
+    next(traffic_light_EW) := 
+    case
+        (traffic_light_EW = GREEN) & (emergency_sensor) = TRUE : YELLOW;
+        (traffic_light_EW = RED) & (current_traffic_flow = NS) & (time_left_red = 0) & (emergency_sensor) = FALSE : GREEN;
+        (traffic_light_EW = YELLOW) & (current_traffic_flow = EW) & (time_left_yellow = 0) & (emergency_sensor) = FALSE : RED;
+        (traffic_light_EW = GREEN) & (time_left_green = 0) & (emergency_sensor) = FALSE : YELLOW;
+        TRUE : RED;
+    esac;
+
+    -- Control NS pedestrian lights considering traffic flow
+    next(ped_light_NS) := 
+    case
+        (ped_light_NS = STOP) & (current_traffic_flow = EW) : WALK;
+        (ped_light_NS = WALK) & (current_traffic_flow = NS) : STOP;
+        TRUE : STOP;
+    esac;
+
+    -- Control EW pedestrian lights considering traffic flow
+    next(ped_light_EW) := 
+    case
+        (ped_light_EW = STOP) & (current_traffic_flow = NS) : WALK;
+        (ped_light_EW = WALK) & (current_traffic_flow = EW) : STOP;
+        TRUE : STOP;
+    esac;
+
+    -- Control traffic flow considering traffic lights
+    next(current_traffic_flow) := 
+    case
+        (traffic_light_NS) = YELLOW : EW;
+        (traffic_light_EW) = YELLOW : NS;
+        TRUE : current_traffic_flow;
+    esac;
+
+    -- Control green light time
+    next(time_left_green) := 
+    case
+        (time_left_green > 0): case
+
+            -- The case when the NS light is green but there's a lot of cars on the EW side
+            -- In this case, we reduce the green time
+            (current_traffic_flow = NS) & (car_waiting_time_reduction = TRUE) & (car_sensor_EW = TRUE): 
+            case
+                (time_left_green - (time_left_green*50/100) - 1 >= 0) : time_left_green - (time_left_green*50/100) - 1;
+                TRUE: 0;
+            esac;
+
+            -- The case when the EW light is green but there's a lot of cars on the NS side
+            -- In this case, we reduce the green time
+            (current_traffic_flow = EW) & (car_waiting_time_reduction = TRUE) & (car_sensor_NS = TRUE): 
+            case
+                (time_left_green - (time_left_green*50/100) - 1 >= 0) : time_left_green - (time_left_green*50/100) - 1;
+                TRUE: 0;
+            esac;
+            -- If none is true, meaning that no sensors are on, we reduce the timer by one
+            TRUE: time_left_green - 1;
+        esac;
+        (time_left_red = 0): 45;
+        TRUE: time_left_green;
+    esac;
+
+    -- Control yellow light time
+    next(time_left_yellow) := 
+    case
+        (time_left_yellow > 0) & (time_left_green = 0): time_left_yellow - 1;
+        (time_left_red = 0): 3;
+        TRUE: time_left_yellow;
+    esac;
+
+    -- Control red light time
+    next(time_left_red) := 
+    case
+        (time_left_red > 0) & (time_left_yellow = 0): time_left_red - 1;
+        (time_left_red = 0): 45;
+        TRUE: time_left_red;
+    esac;
+    
+    -- Turn on waiting time reduction system considering current traffic flow and the readings from car sensors
+    next(car_waiting_time_reduction) := 
+    case
+        (current_traffic_flow = NS) & (car_sensor_EW = TRUE) : TRUE;
+        (current_traffic_flow = EW) & (car_sensor_NS = TRUE) : TRUE;
+        (car_waiting_time_reduction = TRUE) : FALSE;
+        TRUE: car_waiting_time_reduction;
+    esac;
+    
+    -- randomly activate the emergency sensor
+    next(emergency_sensor) := {FALSE, TRUE};
+
+    -- randomly activate car sensors on each side of the road
+    next(car_sensor_NS) := {FALSE, TRUE};
+    next(car_sensor_EW) := {FALSE, TRUE};
+
+
+
+    --Safety Properties 
+    SPEC
+    --both traffic lights can't be green at the same time
+    AG((traffic_light_NS = GREEN) -> AF traffic_light_EW != GREEN)
+
+    SPEC
+    -- pedestrian light can't be on "WALK" if the traffic light on the same side is green
+    AG((traffic_light_NS = GREEN) -> AF ped_light_NS != WALK)
+
+    SPEC
+    -- traffic lights can't be green if emergency sensor is on
+    AG((emergency_sensor = TRUE) -> AF (traffic_light_NS != GREEN & AF traffic_light_EW != GREEN))
+    
+    
+    --Liveness Properties
+    SPEC
+    -- At some point, one traffic light will be RED while the other one is GREEN
+    EF((traffic_light_NS = GREEN) -> EF(traffic_light_EW = RED))
+
+    SPEC
+    -- At some point, one pedestrian light will be STOP while the other one is WALK
+    EF((ped_light_NS = STOP) -> EF(ped_light_EW = WALK))
+
+    SPEC
+    -- At some point, both traffic lights will be YELLOW
+    -- DISCLAIMER: Not necessarily at the same time
+    EF(traffic_light_NS = YELLOW) & EF(traffic_light_EW = YELLOW)
