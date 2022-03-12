@@ -123,7 +123,7 @@ public class Recipe {
 	 * @param name   The name to set.
 	 */
     public void setName(String name) {
-    	if(name != null && !name.equals("")) {
+    	if(name != null) { // Mutation 5 Add "&& !name.equals(" ")" to the if statement 
     		this.name = name;
     	}
 	}

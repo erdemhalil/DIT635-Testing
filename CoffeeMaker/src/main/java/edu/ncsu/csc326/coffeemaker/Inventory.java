@@ -59,8 +59,7 @@ public class Inventory {
     	} catch (NumberFormatException e) {
     		throw new InventoryException("Units of chocolate must be a positive integer");
     	}
-		if (amtChocolate >= 0) { // Mutation 3 
-            // Change ">=" to "<="
+		if (amtChocolate >= 0) {
 			Inventory.chocolate += amtChocolate;
 		} else {
 			throw new InventoryException("Units of chocolate must be a positive integer");
@@ -182,7 +181,8 @@ public class Inventory {
     	} catch (NumberFormatException e) {
     		throw new InventoryException("Units of sugar must be a positive integer");
     	}
-		if (amtSugar >= 0) {
+		if (amtSugar >= 0) { // Mutation 3 
+            // Change ">=" to "<="
 			Inventory.sugar += amtSugar;
 		} else {
 			throw new InventoryException("Units of sugar must be a positive integer");

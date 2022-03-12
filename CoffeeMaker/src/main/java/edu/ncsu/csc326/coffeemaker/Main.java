@@ -281,8 +281,6 @@ public class Main {
         	recipe = Integer.parseInt(userSelection) - 1;
         	if (recipe >= 0 && recipe <=2) {
         		//do nothing here.
-				// Mutation 5
-				// Add recipe = recipe;
         	} else {
         		recipe = -1;
         	}
